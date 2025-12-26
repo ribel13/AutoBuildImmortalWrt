@@ -252,7 +252,7 @@ jobs:
       - name: Rename .img.xz file
         id: rename
         run: |
-          FILE=$(ls ${{ immortalwrt-23.05.7 }}/*.img.xz | head -n1)
+          FILE=$(ls ${{ ribel13/AutoBuildImmortalWrt }}/*.img.gz | head -n1)
           echo "Image file is: $FILE"
           FILENAME=$(basename "$FILE")
           echo "FILENAME=$FILENAME" >> $GITHUB_ENV
