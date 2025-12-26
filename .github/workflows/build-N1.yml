@@ -252,13 +252,13 @@ jobs:
       - name: Rename .img.xz file
         id: rename
         run: |
-          FILE=$(ls ${{ env.PACKAGED_OUTPUTPATH }}/*.img.xz | head -n1)
+          FILE=$(ls ${{ immortalwrt-23.05.7 }}/*.img.xz | head -n1)
           echo "Image file is: $FILE"
           FILENAME=$(basename "$FILE")
           echo "FILENAME=$FILENAME" >> $GITHUB_ENV
           KERNEL_VERSION=$(echo "$FILENAME" | grep -oP 'k\d+\.\d+\.\d+')
-          LUCI_VERSION="${{ github.event.inputs.luci_version }}"
-
+          LUCI_VERSION="${{ github.event.inputs.luci_version }}
+          
           if [ -n "$PREBUILT_LUCI_VERSION" ]; then
              echo "PREBUILT_LUCI_VERSION is not empty: $PREBUILT_LUCI_VERSION"
              mv "$FILE" "${{ env.PACKAGED_OUTPUTPATH }}/immortalwrt-$PREBUILT_LUCI_VERSION-phicomm-n1-btrfs-$KERNEL_VERSION.img.gz"
