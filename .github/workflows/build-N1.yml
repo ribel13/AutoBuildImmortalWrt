@@ -8,6 +8,7 @@ on:
         default: "24.10.4"
         type: choice
         options:
+          - 23.05.7
           - 24.10.0
           - 24.10.1
           - 24.10.2
@@ -222,10 +223,10 @@ jobs:
         if: ${{ github.event.inputs.skip_imagebuilder == 'true' }}
         run: |
           echo "📦 正在下载预构建 rootfs"
-          echo "PREBUILT_LUCI_VERSION=24.10.2" >> $GITHUB_ENV
+          echo "PREBUILT_LUCI_VERSION=23.05.7" >> $GITHUB_ENV
           mkdir -p bin/targets/armsr/armv8
           curl -L -o bin/targets/armsr/armv8/openwrt-armvirt-64-default-rootfs.tar.gz \
-            https://github.com/wukongdaily/AutoBuildImmortalWrt/releases/download/rootfs/immortalwrt-24.10.2-armsr-armv8-generic-rootfs.tar.gz
+            https://downloads.immortalwrt.org/releases/23.05.7/targets/armsr/armv8/immortalwrt-imagebuilder-23.05.7-armsr-armv8.Linux-x86_64.tar.xz
 
       - name: 查找rootfs.tar.gz所在路径
         id: find_rootfs
