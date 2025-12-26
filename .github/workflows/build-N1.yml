@@ -231,8 +231,8 @@ jobs:
       - name: 查找rootfs.tar.gz所在路径
         id: find_rootfs
         run: |
-          ROOTFS_FILE=$(find bin/targets/armsr/armv8/ -type f -name "*rootfs.tar.gz" | head -n1)
-          echo "✅ Found: $ROOTFS_FILE"
+          ROOTFS_FILE=$(find bin/targets/armsr/armv8/ -type f -name "23.05.7-arms-armv8.Linux-x86_64.tar.xz"
+          echo "✅ Found: $ROOTFS_FILE"" | head -n1)
           if [ ! -f "$ROOTFS_FILE" ]; then
             echo "❌ 找不到 rootfs.tar.gz 文件"
             exit 1
@@ -244,8 +244,8 @@ jobs:
         if: ${{ steps.down.outputs.status }} == 'success' && !cancelled()
         env:
           OPENWRT_ARMVIRT: ${{ steps.find_rootfs.outputs.file }}
-          PACKAGE_SOC: s905d
-          KERNEL_VERSION_NAME: ${{ inputs.openwrt_kernel }}
+          PACKAGE_SOC: s905x
+x          KERNEL_VERSION_NAME: ${{ inputs.openwrt_kernel }}
           KERNEL_AUTO_LATEST: false
           WHOAMI: ${{ inputs.builder_name }}
 
