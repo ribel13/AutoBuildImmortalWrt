@@ -9,7 +9,7 @@ echo "Building for profile: $PROFILE"
 # yml 传入的固件大小 ROOTFS_PARTSIZE
 echo "Building for ROOTFS_PARTSIZE: $ROOTFS_PARTSIZE"
 # 输出调试信息
-echo "$(date '+%Y-%m-%d %H:%M:%S') - 开始构建arm64的rootfs.tar.gz"
+echo "$(date '+%Y-%m-%d %H:%M:%S') - 开始构建arm64的rootfs.tar.xz"
 # 定义所需安装的包列表 下列插件你都可以自行删减
 PACKAGES=""
 PACKAGES="$PACKAGES curl fdisk"
