@@ -5,7 +5,7 @@ on:
       luci_version:
         description: "选择luci版本"
         required: false
-        default: "24.10.4"
+        default: "23.05.7"
         type: choice
         options:
           - 23.05.7
@@ -220,7 +220,7 @@ jobs:
               immortalwrt/imagebuilder:armsr-armv8-openwrt-${luci_version} /bin/bash /home/build/immortalwrt/build.sh
           done
           
-      - name: Download prebuilt rootfs.tar.gz
+      - name: Download prebuilt rootfs.tar.xz
         if: ${{ github.event.inputs.skip_imagebuilder == 'true' }}
         run: |
           echo "📦 正在下载预构建 rootfs"
@@ -276,4 +276,4 @@ jobs:
           files: |
             ${{ env.PACKAGED_OUTPUTPATH }}/*.img.gz
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN: ${{ secrets.RELEASE_TOKEN }}
