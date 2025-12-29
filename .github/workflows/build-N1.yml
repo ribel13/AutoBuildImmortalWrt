@@ -250,10 +250,10 @@ jobs:
           KERNEL_AUTO_LATEST: false
           WHOAMI: ${{ inputs.builder_name }}
 
-      - name: Rename .img.xz file
+      - name: Rename .tar.xz file
         id: rename
         run: |
-          FILE=$(ls ${{ env.PACKAGED_OUTPUTPATH }}/*.img.gz | head -n1)
+          FILE=$(ls ${{ env.PACKAGED_OUTPUTPATH }}/*.tar.xz | head -n1)
           echo "Image file is: $FILE"
           FILENAME=$(basename "$FILE")
           echo "FILENAME=$FILENAME" >> $GITHUB_ENV
@@ -262,9 +262,9 @@ jobs:
           
           if [ -n "$PREBUILT_LUCI_VERSION" ]; then
              echo "PREBUILT_LUCI_VERSION is not empty: $PREBUILT_LUCI_VERSION"
-             mv "$FILE" "${{ env.PACKAGED_OUTPUTPATH }}/immortalwrt-$PREBUILT_LUCI_VERSION-phicomm-n1-btrfs-$KERNEL_VERSION.img.gz"
+             mv "$FILE" "${{ env.PACKAGED_OUTPUTPATH }}/immortalwrt-$PREBUILT_LUCI_VERSION-phicomm-n1-btrfs-$KERNEL_VERSION.tar.xz"
           else
-             mv "$FILE" "${{ env.PACKAGED_OUTPUTPATH }}/immortalwrt-$LUCI_VERSION-phicomm-n1-btrfs-$KERNEL_VERSION.img.gz"
+             mv "$FILE" "${{ env.PACKAGED_OUTPUTPATH }}/immortalwrt-$LUCI_VERSION-phicomm-n1-btrfs-$KERNEL_VERSION.tar.xz"
           fi
 
       - name: Upload firmware to GitHub Releases
@@ -274,6 +274,6 @@ jobs:
           name: ImmortalWrt for Phicomm N1
           body_path: ${{ github.workspace }}/n1/info.md
           files: |
-            ${{ env.PACKAGED_OUTPUTPATH }}/*.img.gz
+            ${{ env.PACKAGED_OUTPUTPATH }}/*.tar.xz
         env:
           TOKEN: ${{ secrets.RELEASE_TOKEN }}
